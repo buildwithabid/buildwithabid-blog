@@ -1,0 +1,632 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface2: #f4f4f5;
+  --color-surface3: #e4e4e7;
+  --color-border: #e4e4e7;
+  --color-border-hover: #a1a1aa;
+  --color-text: #18181b;
+  --color-text-secondary: #27272a;
+  --color-dim: #71717a;
+  --color-accent: #00BFA6;
+  --color-accent-light: #e0f7f1;
+  --color-accent-hover: #00a896;
+  --color-green: #059669;
+  --color-green-light: #d1fae5;
+
+  --font-display: "Instrument Serif", serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Subtle gradient mesh background */
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 191, 166, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(5, 150, 105, 0.05), transparent);
+}
+
+/* Post header gradient */
+.post-header-gradient {
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(0, 191, 166, 0.06), transparent),
+    radial-gradient(ellipse 50% 60% at 0% 50%, rgba(5, 150, 105, 0.04), transparent);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 191, 166, 0.1);
+}
+
+/* Tag pill hover */
+.tag-pill {
+  transition: all 0.2s ease;
+}
+.tag-pill:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+/* Animated underline for nav links */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 1px;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Workshop CTA gradient */
+.workshop-gradient {
+  background: linear-gradient(135deg, #00BFA6, #00a896, #008f7a);
+}
+
+.workshop-spotlight-gradient {
+  background: linear-gradient(135deg, #e0f7f1, #b2dfdb, #e0f7f1);
+}
+
+/* ============================================
+   PROSE — Base markdown styling
+   ============================================ */
+.prose {
+  max-width: none;
+  line-height: 1.85;
+  color: var(--color-text-secondary);
+  font-size: 1.0625rem;
+}
+
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+.prose h1 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 400;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 400;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+  letter-spacing: -0.01em;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  color: var(--color-text);
+}
+
+.prose h4 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.prose p {
+  margin-bottom: 1.35rem;
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 191, 166, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.35rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.35rem;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+  padding-left: 0.25rem;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+}
+
+.prose li::marker {
+  color: var(--color-accent);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background-color: var(--color-surface2);
+  padding: 0.2em 0.45em;
+  border-radius: 0.3rem;
+  color: var(--color-accent-hover);
+  border: 1px solid var(--color-border);
+}
+
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  border: 1px solid #313244;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.15);
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding: 0.75rem 1.25rem;
+  margin-left: 0;
+  margin-bottom: 1.35rem;
+  color: var(--color-dim);
+  font-style: italic;
+  background: var(--color-accent-light);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.75rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.prose th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-surface2);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+.prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), var(--color-accent), var(--color-border), transparent);
+  margin: 3rem 0;
+  opacity: 0.5;
+}
+
+.prose img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Section icon in headings */
+.prose .section-icon {
+  margin-right: 0.35rem;
+}
+
+/* ============================================
+   QUICK PICKS — Award-style recommendation grid
+   ============================================ */
+.prose .quick-picks {
+  background: linear-gradient(135deg, #e0f7f1, #b2dfdb, #f0fdf4);
+  border: 1px solid rgba(0, 191, 166, 0.15);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0 2.5rem;
+  box-shadow: 0 4px 24px -8px rgba(0, 191, 166, 0.1);
+}
+
+.prose .quick-picks-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.prose .quick-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.prose .quick-pick-item {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 191, 166, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: all 0.2s ease;
+}
+
+.prose .quick-pick-item:hover {
+  border-color: rgba(0, 191, 166, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(0, 191, 166, 0.12);
+}
+
+.prose .quick-pick-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.prose .quick-pick-tool {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
+.prose .quick-pick-why {
+  font-size: 0.8rem;
+  color: var(--color-dim);
+  line-height: 1.4;
+}
+
+/* ============================================
+   TOOL CARDS — Main review cards
+   ============================================ */
+.prose .tool-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px -4px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.prose .tool-card:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px -8px rgba(0, 0, 0, 0.08);
+}
+
+.prose .tool-card-featured {
+  border-color: rgba(0, 191, 166, 0.25);
+  background: linear-gradient(to bottom right, #ffffff, #e0f7f1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 20px -4px rgba(0, 191, 166, 0.1);
+}
+
+.prose .tool-card-featured:hover {
+  border-color: rgba(0, 191, 166, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 32px -8px rgba(0, 191, 166, 0.15);
+}
+
+.prose .tool-header {
+  margin-bottom: 1.25rem;
+}
+
+.prose .tool-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.prose .tool-name-row h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.prose .tool-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.3em 0.75em;
+  border-radius: 9999px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.prose .badge-popular { background: #fef3c7; color: #92400e; }
+.prose .badge-value { background: #d1fae5; color: #065f46; }
+.prose .badge-enterprise { background: #dbeafe; color: #1e40af; }
+.prose .badge-top { background: linear-gradient(135deg, #e0f7f1, #b2dfdb); color: #00695c; border: 1px solid rgba(0, 191, 166, 0.2); }
+.prose .badge-free { background: #d1fae5; color: #065f46; }
+.prose .badge-fast { background: #fef9c3; color: #854d0e; }
+.prose .badge-design { background: #fce7f3; color: #9d174d; }
+.prose .badge-quality { background: #e0f7f1; color: #00695c; }
+.prose .badge-beginner { background: #d1fae5; color: #065f46; }
+
+.prose .tool-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.825rem;
+  color: var(--color-dim);
+}
+
+/* ============================================
+   PROS & CONS — Side-by-side comparison
+   ============================================ */
+.prose .pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+@media (max-width: 640px) {
+  .prose .pros-cons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prose .pros,
+.prose .cons {
+  background: var(--color-surface2);
+  border-radius: 0.75rem;
+  padding: 1.15rem 1.25rem;
+}
+
+.prose .pros {
+  background: linear-gradient(to bottom, #f0fdf4, var(--color-surface2));
+  border: 1px solid rgba(5, 150, 105, 0.12);
+}
+
+.prose .cons {
+  background: linear-gradient(to bottom, #fffbeb, var(--color-surface2));
+  border: 1px solid rgba(217, 119, 6, 0.12);
+}
+
+.prose .pros-title,
+.prose .cons-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.65rem;
+  color: var(--color-text);
+}
+
+.prose .pros ul,
+.prose .cons ul {
+  margin-bottom: 0;
+  padding-left: 1.15rem;
+  font-size: 0.9rem;
+}
+
+.prose .pros li,
+.prose .cons li {
+  margin-bottom: 0.3rem;
+}
+
+.prose .pros li::marker {
+  color: #059669;
+}
+
+.prose .cons li::marker {
+  color: #d97706;
+}
+
+/* ============================================
+   VERDICT — Bottom-line callout
+   ============================================ */
+.prose .verdict {
+  background: var(--color-surface2);
+  border-left: 3px solid var(--color-dim);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.85rem 1.15rem;
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+.prose .verdict-featured {
+  background: linear-gradient(to right, #e0f7f1, #f0fdf4);
+  border-left-color: var(--color-accent);
+}
+
+/* ============================================
+   CALLOUTS — Highlighted info boxes
+   ============================================ */
+.prose .callout {
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.prose .callout-highlight {
+  background: linear-gradient(135deg, #e0f7f1, #f0fdf4);
+  border: 1px solid rgba(0, 191, 166, 0.15);
+  color: var(--color-text-secondary);
+}
+
+.prose .callout-warning {
+  background: linear-gradient(135deg, #fef3c7, #fffbeb);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+  color: var(--color-text-secondary);
+}
+
+/* ============================================
+   STACK GRID — Recommended tool combos
+   ============================================ */
+.prose .stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.prose .stack-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  transition: all 0.2s ease;
+}
+
+.prose .stack-item:hover {
+  border-color: rgba(0, 191, 166, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.08);
+}
+
+.prose .stack-use {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.prose .stack-tool {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.prose .stack-desc {
+  font-size: 0.8rem;
+  color: var(--color-dim);
+  line-height: 1.4;
+}
+
+/* ============================================
+   FOLLOW CARD — Social CTA at bottom
+   ============================================ */
+.prose .follow-card {
+  background: linear-gradient(135deg, #18181b, #27272a);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2.5rem 0 1rem;
+  text-align: center;
+}
+
+.prose .follow-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #fafafa;
+  margin-bottom: 1.25rem;
+}
+
+.prose .follow-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.prose .follow-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fafafa;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.prose .follow-links a:hover {
+  background: rgba(0, 191, 166, 0.5);
+  border-color: rgba(0, 191, 166, 0.6);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
